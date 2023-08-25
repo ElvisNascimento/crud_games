@@ -1,17 +1,22 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Game } from './interfaces/game.interface';
 import { Model } from 'mongoose';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { IConsole, IDev, IGame } from './Interface/game.interface';
+
 
 @Injectable()
 export class GamesService {
   constructor(
     @Inject('GAME_MODEL')
-    private gameModel: Model<Game>,
+    private gameModel: Model<IGame>,
+    @Inject('DEV_MODEL')
+    private devModel: Model<IDev>,
+    @Inject('CONSOLE_MODEL')
+    private consolesModel: Model<IConsole>,
   ) {}
 
-  async create(createGameDto: CreateGameDto): Promise<Game> {
+  async createGame(createGameDto: CreateGameDto): Promise<IGame> {
     const createdGame = new this.gameModel(createGameDto);
     return await createdGame.save();
   }

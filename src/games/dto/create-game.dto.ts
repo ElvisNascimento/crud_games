@@ -1,5 +1,4 @@
 export class CreateGameDto {
-  id: number;
   nome: string;
   descricao: string;
   dataLancamento: Date;
@@ -8,4 +7,16 @@ export class CreateGameDto {
   genero: string;
   urlCapa: string;
   consoles: object[];
+}
+export class CreateDevDto {
+  nome: string;
+    dataFundacao: string;
+    website: string;
+    sede: string;
+}
+export class CreateConsoleDto {
+  codigo: number;
+  nome: string;
+  dataLancamento: string;
+  empresa: string;
 }

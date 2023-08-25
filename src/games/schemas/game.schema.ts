@@ -1,6 +1,24 @@
 import * as mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 
-export const Game = new mongoose.Schema({
+
+export const ConsoleSchema = new mongoose.Schema({
+  codigo: Number,
+  nome: String,
+  dataLancamento: String,
+  empresa: String,
+});
+
+
+export const DevSchema = new mongoose.Schema({
+  nome: String,
+  dataFundacao: String,
+  website: String,
+  sede: String,
+});
+
+export const GameSchema = new mongoose.Schema({
+  // _id: Schema.Types.ObjectId,
   nome: String,
   descricao: String,
   dataLancamento: String,
@@ -8,18 +26,9 @@ export const Game = new mongoose.Schema({
   desenvolvedor: String,
   genero: String,
   urlCapa: String,
-  consoles: Array<any>,
+  consoles: Array<any>
 });
-// {
-//     "nome": "Call of Duty Ghost",
-//     “descricao”: “Welcome to Call of Duty: Ghosts”
-//     "dataLancamento": "2013-05-01",
-//     "website": “https://www.callofduty.com/br/pt”
-//     “desenvolvedor”: "Activision",
-//     : “FPS”
-//     “urlCapa”: “https://upload.wikimedia.org/Call_of_duty_ghosts_box_art.jpg”
-//     “consoles”: [
-//                   { codigo: 1 },
-//                   { codigo: 2 },
-//                 ]
-//     }
+
+const Dev = mongoose.model('Dev', DevSchema);
+const Consoles = mongoose.model('Consoles', ConsoleSchema);
+const Game = mongoose.model('Game', GameSchema);
