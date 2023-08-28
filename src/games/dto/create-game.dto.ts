@@ -1,20 +1,23 @@
 export class CreateGameDto {
+  _id: string;
   nome: string;
   descricao: string;
   dataLancamento: Date;
   website: string;
-  desenvolvedor: string;
+  desenvolvedor: CreateDevDto[];
   genero: string;
   urlCapa: string;
-  consoles: object[];
+  consoles: CreateConsoleDto[];
 }
 export class CreateDevDto {
+  _id: string;
   nome: string;
-    dataFundacao: string;
-    website: string;
-    sede: string;
+  dataFundacao: string;
+  website: string;
+  sede: string;
 }
 export class CreateConsoleDto {
+  _id: string;
   codigo: number;
   nome: string;
   dataLancamento: string;

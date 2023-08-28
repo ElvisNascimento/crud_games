@@ -1,5 +1,7 @@
 import { Connection } from 'mongoose';
-import { ConsoleSchema, DevSchema, GameSchema } from '../schemas/game.schema';
+import { DevSchema } from '../schemas/desenvolvedor.schema';
+import { ConsolesSchema } from '../schemas/consoles.schema';
+import { GameSchema } from '../schemas/game.schema';
 
 export const GamesProviders = [
   {
@@ -14,7 +16,7 @@ export const GamesProviders = [
   },
   {
     provide: 'CONSOLE_MODEL',
-    useFactory: (connection: Connection) => connection.model('Console', ConsoleSchema),
+    useFactory: (connection: Connection) => connection.model('Console', ConsolesSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

@@ -1,34 +1,34 @@
-import * as mongoose from 'mongoose';
-import { Schema } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { Desenvolvedor } from './desenvolvedor.schema';
+import { Consoles } from './consoles.schema';
 
+@Schema()
+export class Game extends Document {
 
-export const ConsoleSchema = new mongoose.Schema({
-  codigo: Number,
-  nome: String,
-  dataLancamento: String,
-  empresa: String,
-});
+  @Prop()
+  nome: String;
 
+  @Prop()
+  descricao: String;
 
-export const DevSchema = new mongoose.Schema({
-  nome: String,
-  dataFundacao: String,
-  website: String,
-  sede: String,
-});
+  @Prop()
+  dataLancamento: String;
 
-export const GameSchema = new mongoose.Schema({
-  // _id: Schema.Types.ObjectId,
-  nome: String,
-  descricao: String,
-  dataLancamento: String,
-  website: String,
-  desenvolvedor: String,
-  genero: String,
-  urlCapa: String,
-  consoles: Array<any>
-});
+  @Prop()
+  website: String;
 
-const Dev = mongoose.model('Dev', DevSchema);
-const Consoles = mongoose.model('Consoles', ConsoleSchema);
-const Game = mongoose.model('Game', GameSchema);
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'desenvolvedor' }] })
+  desenvolvedor: Desenvolvedor[];
+
+  @Prop()
+  genero: String;
+
+  @Prop()
+  urlCapa: String;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'consoles' }] })
+  consoles: Consoles[];
+}
+
+export const GameSchema = SchemaFactory.createForClass(Game);

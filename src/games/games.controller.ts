@@ -10,6 +10,7 @@ import {
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { IGame } from './Interface/game.interface';
 
 @Controller('games')
 export class GamesController {
@@ -21,7 +22,7 @@ export class GamesController {
   }
 
   @Get()
-  findAll() {
+  findAll(){
     return this.gamesService.findAll();
   }
 
